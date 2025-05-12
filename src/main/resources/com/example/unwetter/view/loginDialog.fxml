@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.unwetter.controller.LoginDialogController"
+           fx:id="rootPane"
+           style="-fx-background-color: transparent;"
+           prefWidth="640" prefHeight="380">
+
+    <!-- Главное окно -->
+    <BorderPane fx:id="mainPane"
+                prefWidth="600" prefHeight="340"
+                style="-fx-background-radius: 20;
+                       -fx-background-color: white;
+                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 30, 0.2, 0, 6);">
+
+        <!-- Левая часть -->
+        <left>
+            <VBox alignment="CENTER"
+                  prefWidth="240"
+                  style="-fx-background-color: #dde7ff;
+                         -fx-background-radius: 20 0 0 20;">
+                <ImageView fitHeight="180" fitWidth="180" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/cloud.png"/>
+                    </image>
+                </ImageView>
+            </VBox>
+        </left>
+
+        <!-- Центр — форма -->
+        <center>
+            <VBox alignment="CENTER" spacing="15" style="-fx-padding: 40;">
+                <Label text="🔐 Anmeldung"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+                <TextField fx:id="usernameField" promptText="Benutzername" prefWidth="220"
+                           style="-fx-background-radius: 6;"/>
+                <PasswordField fx:id="passwordField" promptText="Passwort" prefWidth="220"
+                               style="-fx-background-radius: 6;"/>
+                <Label fx:id="errorLabel" textFill="red" style="-fx-font-size: 12;" />
+                <Button text="Login"
+                        onAction="#handleLogin"
+                        style="-fx-background-color: #b4cbff;
+                               -fx-background-radius: 6;
+                               -fx-text-fill: #ffffff;
+                               -fx-font-weight: bold;
+                               -fx-cursor: hand;"
+                        prefWidth="100"/>
+            </VBox>
+        </center>
+    </BorderPane>
+
+    <!-- Кнопка закрытия поверх всего -->
+    <Button text="✖"
+            onAction="#handleCancel"
+            style="-fx-background-color: transparent;
+                   -fx-font-size: 14px;
+                   -fx-text-fill: #666;
+                   -fx-cursor: hand;"
+            StackPane.alignment="TOP_RIGHT"
+            translateX="-20" translateY="15"/>
+</StackPane>
+

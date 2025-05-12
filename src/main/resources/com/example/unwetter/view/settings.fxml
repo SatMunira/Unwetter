@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.unwetter.controller.SettingsController"
+            prefHeight="500.0" prefWidth="700.0"
+            fx:id="rootPane"
+            style="-fx-background-color: white;">
+
+    <center>
+        <ScrollPane fitToWidth="true" pannable="true">
+            <content>
+                <VBox spacing="20" style="-fx-padding: 20;" prefWidth="660">
+
+                    <!-- Заголовок -->
+                    <HBox spacing="10" alignment="CENTER_LEFT" prefWidth="Infinity">
+                        <!-- Левая часть -->
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <ImageView fitHeight="32" fitWidth="32">
+                                <image>
+                                    <Image url="@../images/settings-icon.png" />
+                                </image>
+                            </ImageView>
+
+                            <Label text="Einstellungen"
+                                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+                        </HBox>
+
+
+                        <!-- Правая часть: кнопка Reload -->
+                        <Button fx:id="reloadButton" onAction="#handleReload"
+                                style="-fx-background-color: transparent; -fx-cursor: hand;">
+                            <graphic>
+                                <ImageView fitWidth="18" fitHeight="18">
+                                    <image>
+                                        <Image url="@../images/reload.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </HBox>
+
+
+
+                    <!-- Профиль -->
+                    <TitledPane text="Profil" expanded="true">
+                        <VBox spacing="10" style="-fx-padding: 10;">
+
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+
+                                <!-- Левая часть — иконка -->
+                                <ImageView fitHeight="48" fitWidth="48">
+                                    <image>
+                                        <Image url="@../images/user-icon.png" />
+                                    </image>
+                                </ImageView>
+
+                                <!-- Правая часть — текст и кнопка -->
+                                <VBox spacing="5">
+                                    <Label fx:id="usernameLabel" text="Benutzer: Munira (Admin)"
+                                           style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                                    <Button text="Passwort ändern" onAction="#handleChangePassword"
+                                            style="-fx-background-color: #dde7ff; -fx-background-radius: 8; -fx-cursor: hand;" />
+                                </VBox>
+
+                            </HBox>
+
+
+                        </VBox>
+                    </TitledPane>
+
+
+                    <!-- Daten -->
+                    <!-- Datenverwaltung im Profil-Stil -->
+                    <TitledPane text="Datenverwaltung" expanded="true">
+                        <VBox spacing="10" style="-fx-padding: 10;">
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+
+                                <!-- Левая часть — иконка -->
+                                <ImageView fitHeight="48" fitWidth="48">
+                                    <image>
+                                        <Image url="@../images/daten.png" />
+                                    </image>
+                                </ImageView>
+
+                                <!-- Правая часть — кнопки -->
+                                <VBox spacing="5">
+                                    <Button text="Export als CSV" onAction="#handleExportCSV"
+                                            style="-fx-background-color: #dde7ff; -fx-background-radius: 8; -fx-cursor: hand;" />
+                                    <Button text="Testdaten löschen" onAction="#handleClearTestData"
+                                            style="-fx-background-color: #ffd6d6; -fx-background-radius: 8; -fx-cursor: hand;" />
+                                </VBox>
+
+                            </HBox>
+                        </VBox>
+                    </TitledPane>
+
+
+                    <!-- App Infos -->
+                    <TitledPane text="Info" expanded="true">
+                        <VBox spacing="10" style="-fx-padding: 10;">
+                            <Label text="Version: 1.0.0" />
+                            <Label text="© 2025 WHZ Unwetter App" />
+                        </VBox>
+                    </TitledPane>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

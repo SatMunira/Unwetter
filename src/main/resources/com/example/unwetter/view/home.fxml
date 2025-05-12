@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.unwetter.controller.HomeController"
+            fitToWidth="true"
+            style="-fx-background: transparent;">
+
+    <content>
+        <VBox spacing="20" alignment="TOP_CENTER" style="-fx-padding: 30;">
+            <!-- Hero Section -->
+            <HBox alignment="CENTER" spacing="30"
+                  style="-fx-background-color: #ffffff;
+                         -fx-padding: 30;
+                         -fx-background-radius: 15;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 20, 0.2, 0, 4);">
+                <VBox spacing="10" alignment="TOP_LEFT" prefWidth="400">
+                    <Label text="👋 Willkommen zurück!"
+                           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+                    <Label text="Hier findest du eine Übersicht der letzten Unwetter-Ereignisse und Statistiken."
+                           wrapText="true"
+                           style="-fx-font-size: 14px; -fx-text-fill: #555;" />
+                </VBox>
+                <StackPane prefWidth="200" prefHeight="200"
+                           style="-fx-background-color: #dde7ff;
+                                  -fx-background-radius: 20;">
+                    <ImageView fitHeight="180" fitWidth="180" preserveRatio="true">
+                        <image>
+                            <Image url="@../images/cloud.png" />
+                        </image>
+                    </ImageView>
+                </StackPane>
+            </HBox>
+
+            <!-- Statistic Cards -->
+            <HBox spacing="15" alignment="CENTER">
+                <VBox style="-fx-background-color: #e6f0ff; -fx-padding: 15; -fx-background-radius: 10;" alignment="CENTER">
+                    <Label text="🌩 Ereignisse" />
+                    <Label fx:id="ereignisseLabel" text="0"
+                           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #51515d" />
+                </VBox>
+                <VBox style="-fx-background-color: #e6f0ff; -fx-padding: 15; -fx-background-radius: 10;" alignment="CENTER">
+                    <Label text="💰 Gesamtschaden" />
+                    <Label fx:id="gesamtschadenLabel" text="0 €"
+                           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #51515d" />
+                </VBox>
+                <VBox style="-fx-background-color: #e6f0ff; -fx-padding: 15; -fx-background-radius: 10;" alignment="CENTER">
+                    <Label text="📅 Letztes Ereignis" />
+                    <Label fx:id="letztesDatumLabel" text="-"
+                           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #51515d" />
+                </VBox>
+            </HBox>
+
+            <!-- Letzte Ereignisse -->
+            <VBox spacing="5" alignment="CENTER_LEFT" style="-fx-padding: 20 0 0 0;">
+                <Label text="🕒 Letzte Ereignisse:"
+                       style="-fx-font-size: 16px; -fx-underline: true;" />
+                <VBox fx:id="ereignisList" spacing="3" />
+            </VBox>
+
+            <VBox spacing="30" alignment="TOP_CENTER" style="-fx-padding: 30;">
+
+                <!-- LineChart Schadenhöhe pro Datum -->
+                <LineChart fx:id="unwetterChart" prefWidth="700" prefHeight="300">
+                    <xAxis>
+                        <CategoryAxis label="Datum" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Schadenhöhe (€)" />
+                    </yAxis>
+                </LineChart>
+
+                <!-- BarChart Schaden pro Unwetterart -->
+                <BarChart fx:id="barChart" prefWidth="700" prefHeight="300">
+                    <xAxis>
+                        <CategoryAxis label="Unwetterart" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Gesamtschaden (€)" />
+                    </yAxis>
+                </BarChart>
+
+                <!-- PieChart Verteilung nach Ort -->
+                <PieChart fx:id="pieChart" prefWidth="500" prefHeight="300" title="Verteilung der Ereignisse nach Ort" />
+
+                <!-- AreaChart Schadenentwicklung über Monate -->
+                <AreaChart fx:id="areaChart" prefWidth="700" prefHeight="300">
+                    <xAxis>
+                        <CategoryAxis label="Monat" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Schadenhöhe (€)" />
+                    </yAxis>
+                </AreaChart>
+
+                <HBox alignment="CENTER"
+                      prefWidth="10000"
+                      style="-fx-background-color: transparent; -fx-padding: 20 0 10 0;">
+                    <Label text="© 2025 Unwetterdatenbank — WHZ Projektarbeit"
+                           style="-fx-text-fill: #aaaaaa; -fx-font-size: 11px;" />
+                </HBox>
+
+            </VBox>
+
+        </VBox>
+    </content>
+</ScrollPane>

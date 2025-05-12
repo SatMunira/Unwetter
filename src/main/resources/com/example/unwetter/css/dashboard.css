@@ -1,0 +1,13 @@
+.menu-container {
+    -fx-background-color: #788db0;
+    -fx-padding: 10px;
+}
+
+.button-container {
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.button-container:hover {
+    -fx-background-color: #2a4b77;
+}

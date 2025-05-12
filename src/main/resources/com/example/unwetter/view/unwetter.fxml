@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.collections.FXCollections?>
+
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.unwetter.controller.UnwetterController"
+            prefHeight="600.0" prefWidth="900.0">
+
+    <top>
+        <VBox spacing="10" style="-fx-padding: 10;">
+
+            <!-- Header mit Reload -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Übersicht der Unwetter-Ereignisse"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+                <Button fx:id="reloadButton" onAction="#handleReload"
+                        style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitWidth="18" fitHeight="18">
+                            <image>
+                                <Image url="@../images/reload.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+
+            <!-- Such- und Filterleiste -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="searchField" promptText="🔍 Suchen..." prefWidth="200" />
+
+                <ComboBox fx:id="filterComboBox" promptText="Filter: Art wählen" prefWidth="140">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Alle" />
+                            <String fx:value="Sturm" />
+                            <String fx:value="Hagel" />
+                            <String fx:value="Überschwemmung" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <ComboBox fx:id="sortComboBox" promptText="Sortieren nach" prefWidth="160">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Datum (Neueste)" />
+                            <String fx:value="Datum (Älteste)" />
+                            <String fx:value="Schadenhöhe (↑)" />
+                            <String fx:value="Schadenhöhe (↓)" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <Pane HBox.hgrow="ALWAYS" /> <!-- Spacer -->
+
+                <!-- Action Buttons rechts -->
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button fx:id="editButton" onAction="#handleEditUnwetter"
+                            style="-fx-background-color: transparent; -fx-cursor: hand;">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi2p-pencil-outline" iconSize="22" iconColor="#555555"/>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="deleteButton" onAction="#handleDeleteUnwetter"
+                            style="-fx-background-color: transparent; -fx-cursor: hand;">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi2t-trash-can-outline" iconSize="22" iconColor="#b00020"/>
+                        </graphic>
+                    </Button>
+                </HBox>
+            </HBox>
+
+            <!-- Eingabefelder zum Hinzufügen -->
+            <HBox fx:id="inputBox" spacing="10" style="-fx-padding: 10 0 0 0;">
+                <TextField fx:id="artField" promptText="Unwetterart" prefWidth="120"/>
+                <DatePicker fx:id="datumPicker" />
+                <TextField fx:id="ortField" promptText="Ort" prefWidth="120"/>
+                <TextField fx:id="schadenField" promptText="Schadenhöhe (€)" prefWidth="120"/>
+                <TextField fx:id="bemerkungField" promptText="Bemerkung" prefWidth="200"/>
+                <Button text="+" onAction="#handleAddUnwetter" style="-fx-font-size: 16px;" />
+            </HBox>
+
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="10" style="-fx-padding: 10;" prefHeight="400" maxHeight="400">
+            <TableView fx:id="unwetterTable"
+                       prefHeight="380"
+                       maxHeight="380"
+                       minHeight="380"
+                       prefWidth="880">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="artColumn" text="Unwetterart" prefWidth="120"/>
+                    <TableColumn fx:id="datumColumn" text="Datum" prefWidth="120"/>
+                    <TableColumn fx:id="ortColumn" text="Ort" prefWidth="120"/>
+                    <TableColumn fx:id="schadenColumn" text="Schaden (€)" prefWidth="120"/>
+                    <TableColumn fx:id="bemerkungColumn" text="Bemerkung" prefWidth="250"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+</BorderPane>
