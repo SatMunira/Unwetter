@@ -12,7 +12,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.unwetter.controller.UnwetterController"
-            prefHeight="600.0" prefWidth="900.0">
+            prefHeight="600.0" prefWidth="780.0">
 
     <top>
         <VBox spacing="10" style="-fx-padding: 10;">
@@ -49,6 +49,7 @@
                     </items>
                 </ComboBox>
 
+
                 <ComboBox fx:id="sortComboBox" promptText="Sortieren nach" prefWidth="160">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
@@ -60,7 +61,7 @@
                     </items>
                 </ComboBox>
 
-                <Pane HBox.hgrow="ALWAYS" /> <!-- Spacer -->
+                <Pane HBox.hgrow="ALWAYS" />
 
                 <!-- Action Buttons rechts -->
                 <HBox spacing="10" alignment="CENTER_RIGHT">
@@ -70,6 +71,7 @@
                             <FontIcon iconLiteral="mdi2p-pencil-outline" iconSize="22" iconColor="#555555"/>
                         </graphic>
                     </Button>
+
                     <Button fx:id="deleteButton" onAction="#handleDeleteUnwetter"
                             style="-fx-background-color: transparent; -fx-cursor: hand;">
                         <graphic>
@@ -80,14 +82,19 @@
             </HBox>
 
             <!-- Eingabefelder zum Hinzufügen -->
-            <HBox fx:id="inputBox" spacing="10" style="-fx-padding: 10 0 0 0;">
-                <TextField fx:id="artField" promptText="Unwetterart" prefWidth="120"/>
-                <DatePicker fx:id="datumPicker" />
-                <TextField fx:id="ortField" promptText="Ort" prefWidth="120"/>
-                <TextField fx:id="schadenField" promptText="Schadenhöhe (€)" prefWidth="120"/>
-                <TextField fx:id="bemerkungField" promptText="Bemerkung" prefWidth="200"/>
-                <Button text="+" onAction="#handleAddUnwetter" style="-fx-font-size: 16px;" />
-            </HBox>
+            <!-- Eingabefelder zum Hinzufügen -->
+            <VBox spacing="10" style="-fx-padding: 10 0 0 0;">
+                <Separator />
+                <HBox fx:id="inputBox" spacing="10">
+                    <ComboBox fx:id="unwetterartComboBox" promptText="Unwetterart wählen" prefWidth="180"/>
+                    <DatePicker fx:id="datumPicker" prefWidth="100"/>
+                    <ComboBox fx:id="ortComboBox" promptText="Ort wählen" prefWidth="140"/>
+                    <TextField fx:id="schadenField" promptText="Schadenhöhe (€)" prefWidth="80"/>
+                    <TextField fx:id="bemerkungField" promptText="Bemerkung" prefWidth="180"/>
+                    <Button text="+" onAction="#handleAddOrUpdateUnwetter" style="-fx-font-size: 16px;" />
+                </HBox>
+            </VBox>
+
 
         </VBox>
     </top>

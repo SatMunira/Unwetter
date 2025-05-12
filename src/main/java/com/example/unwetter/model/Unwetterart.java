@@ -1,5 +1,4 @@
 package com.example.unwetter.model;
-
 public class Unwetterart {
     private int id;
     private String bezeichnung;
@@ -19,6 +18,6 @@ public class Unwetterart {
 
     @Override
     public String toString() {
-        return bezeichnung;
+        return bezeichnung;  // В ComboBox будет видно bezeichnung
     }
 }

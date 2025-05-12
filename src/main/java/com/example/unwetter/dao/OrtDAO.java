@@ -1,6 +1,7 @@
 package com.example.unwetter.dao;
 
 import com.example.unwetter.model.Ort;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ public class OrtDAO {
     private static final String USER = "sa";
     private static final String PASSWORD = "Test123!";
 
-    public List<Ort> getAll() {
+    public List<Ort> getAllOrte() {
         List<Ort> list = new ArrayList<>();
         String sql = "SELECT id, name FROM Ort";
 
@@ -21,7 +22,6 @@ public class OrtDAO {
             while (rs.next()) {
                 list.add(new Ort(rs.getInt("id"), rs.getString("name")));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -29,3 +29,4 @@ public class OrtDAO {
         return list;
     }
 }
+

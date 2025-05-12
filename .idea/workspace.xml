@@ -4,50 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbfe7337-3801-4beb-b513-686d4454ff73" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/controller/DashboardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/controller/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/controller/LoginDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/controller/Session.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/controller/SettingsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/controller/UnwetterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/BenutzerDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/UnwetterDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Benutzer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Unwetter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/css/color.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/css/dashboard.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/cloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/dashboard-hero.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/daten.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/design.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/list.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/reload.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/settings-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/settings.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/storm-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/user-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/images/user.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/dashboard.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/home.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/loginDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/settings.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/unwetter.fxml" afterDir="false" />
+    <list default="true" id="bbfe7337-3801-4beb-b513-686d4454ff73" name="Changes" comment="Feat: Added  Base">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/controller/UnwetterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/controller/UnwetterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/OrtDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/OrtDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/UnwetterDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/UnwetterDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/UnwetterartDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/UnwetterartDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Ort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Ort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Unwetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Unwetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Unwetterart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Unwetterart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/unwetter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/unwetter.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,11 +109,24 @@
       <workItem from="1746967536747" duration="3386000" />
       <workItem from="1746973095949" duration="962000" />
       <workItem from="1746974854435" duration="3970000" />
-      <workItem from="1746991396658" duration="21519000" />
+      <workItem from="1746991396658" duration="27930000" />
     </task>
+    <task id="LOCAL-00001" summary="Feat: Added  Base">
+      <option name="closed" value="true" />
+      <created>1747021232447</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1747021232447</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Feat: Added  Base" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: Added  Base" />
   </component>
 </project>

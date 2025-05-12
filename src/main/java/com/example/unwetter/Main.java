@@ -26,7 +26,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/unwetter/view/dashboard.fxml")));
         primaryStage.setTitle("Unwetterdatenbank");
         primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/unwetter/images/storm-icon.png"))));
-        primaryStage.setScene(new Scene(root, 780, 550));
+        primaryStage.setScene(new Scene(root, 780, 580));
         primaryStage.show();
     }
 

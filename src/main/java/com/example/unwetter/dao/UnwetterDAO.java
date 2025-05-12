@@ -11,14 +11,16 @@ import java.time.LocalDate;
 public class UnwetterDAO {
     private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=UnwetterDB;encrypt=true;trustServerCertificate=true";
     private static final String USER = "sa";
-    private static final String PASSWORD = "Test123!"; // замени на свой, если другой
-
-
-
+    private static final String PASSWORD = "Test123!";
 
     public List<Unwetter> getAllUnwetter() {
         List<Unwetter> list = new ArrayList<>();
-        String sql = "SELECT * FROM Unwetter";
+        String sql = """
+            SELECT u.id, ua.bezeichnung AS unwetterart, u.datum, o.name AS ort, u.schadenhoehe, u.bemerkung
+            FROM Unwetter u
+            JOIN Unwetterart ua ON u.unwetterart_id = ua.id
+            JOIN Ort o ON u.ort_id = o.id
+        """;
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              Statement stmt = conn.createStatement();
@@ -40,15 +42,16 @@ public class UnwetterDAO {
 
         return list;
     }
+
     public void insertUnwetter(Unwetter u) {
-        String sql = "INSERT INTO Unwetter (unwetterart, datum, ort, schadenhoehe, bemerkung) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Unwetter (unwetterart_id, datum, ort_id, schadenhoehe, bemerkung) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, u.getUnwetterart());
+            stmt.setInt(1, u.getUnwetterartId());
             stmt.setDate(2, Date.valueOf(u.getDatum()));
-            stmt.setString(3, u.getOrt());
+            stmt.setInt(3, u.getOrtId());
             stmt.setBigDecimal(4, u.getSchadenhoehe());
             stmt.setString(5, u.getBemerkung());
 
@@ -78,12 +81,35 @@ public class UnwetterDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUnwetter(Unwetter u) {
+        String sql = """
+        UPDATE Unwetter
+        SET unwetterart_id = ?, ort_id = ?, datum = ?, schadenhoehe = ?, bemerkung = ?
+        WHERE id = ?
+    """;
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, u.getUnwetterartId());
+            stmt.setInt(2, u.getOrtId());
+            stmt.setDate(3, Date.valueOf(u.getDatum()));
+            stmt.setBigDecimal(4, u.getSchadenhoehe());
+            stmt.setString(5, u.getBemerkung());
+            stmt.setInt(6, u.getId());
+
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-
-
 }
+
+

@@ -13,7 +13,7 @@
             stylesheets="@../css/dashboard.css">
 
     <children>
-        <VBox alignment="TOP_CENTER" spacing="30.0" prefWidth="80.0" prefHeight="550.0" styleClass="menu-container">
+        <VBox alignment="TOP_CENTER" spacing="30.0" prefWidth="80.0" prefHeight="580.0" styleClass="menu-container">
             <children>
                 <Pane fx:id="paneHome" prefWidth="60.0" prefHeight="60.0" styleClass="button-container" onMouseClicked="#showHomeView">
                     <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="15.0" layoutY="15.0" preserveRatio="true">

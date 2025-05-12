@@ -1,11 +1,15 @@
 package com.example.unwetter.controller;
 
-import com.example.unwetter.model.Unwetter;
+import com.example.unwetter.dao.OrtDAO;
 import com.example.unwetter.dao.UnwetterDAO;
+import com.example.unwetter.dao.UnwetterartDAO;
+import com.example.unwetter.model.Benutzer;
+import com.example.unwetter.model.Ort;
+import com.example.unwetter.model.Unwetter;
+import com.example.unwetter.model.Unwetterart;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import com.example.unwetter.model.Benutzer;
 import javafx.scene.layout.HBox;
 
 import java.math.BigDecimal;
@@ -16,52 +20,42 @@ import java.util.stream.Collectors;
 
 public class UnwetterController {
 
-    @FXML private TextField artField;
+    @FXML private ComboBox<Unwetterart> unwetterartComboBox;
     @FXML private DatePicker datumPicker;
-    @FXML private TextField ortField;
+    @FXML private ComboBox<Ort> ortComboBox;
     @FXML private TextField schadenField;
     @FXML private TextField bemerkungField;
-    @FXML
-    private HBox inputBox;
+    @FXML private HBox inputBox;
     @FXML private Button editButton;
     @FXML private Button deleteButton;
 
     @FXML private TableView<Unwetter> unwetterTable;
     @FXML private TableColumn<Unwetter, Integer> idColumn;
     @FXML private TableColumn<Unwetter, String> artColumn;
-    @FXML private TableColumn<Unwetter, String> datumColumn;
+    @FXML private TableColumn<Unwetter, LocalDate> datumColumn;
     @FXML private TableColumn<Unwetter, String> ortColumn;
-    @FXML private TableColumn<Unwetter, String> schadenColumn;
+    @FXML private TableColumn<Unwetter, BigDecimal> schadenColumn;
     @FXML private TableColumn<Unwetter, String> bemerkungColumn;
 
     @FXML private TextField searchField;
     @FXML private ComboBox<String> filterComboBox;
     @FXML private ComboBox<String> sortComboBox;
 
-    private List<Unwetter> alleUnwetter;  // Оригинальный список для фильтрации
-
+    private List<Unwetter> alleUnwetter;
 
     @FXML
     public void initialize() {
         Benutzer benutzer = Session.getAktuellerBenutzer();
-        System.out.println("Aktueller Benutzer: " + (benutzer != null ? benutzer.getBenutzername() + " (" + benutzer.getRolle() + ")" : "null"));
-
         boolean darfBearbeiten = benutzer != null && (
                 benutzer.getRolle().equalsIgnoreCase("Admin") ||
                         benutzer.getRolle().equalsIgnoreCase("ReadWriter")
         );
 
-        if (!darfBearbeiten) {
-            inputBox.setVisible(false);
-            inputBox.setManaged(false);
-        }
+        inputBox.setVisible(darfBearbeiten);
+        inputBox.setManaged(darfBearbeiten);
 
-        // Показать / спрятать кнопки Edit/Delete
         editButton.setVisible(darfBearbeiten);
-        editButton.setManaged(darfBearbeiten);
-
         deleteButton.setVisible(darfBearbeiten);
-        deleteButton.setManaged(darfBearbeiten);
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         artColumn.setCellValueFactory(new PropertyValueFactory<>("unwetterart"));
@@ -70,15 +64,18 @@ public class UnwetterController {
         schadenColumn.setCellValueFactory(new PropertyValueFactory<>("schadenhoehe"));
         bemerkungColumn.setCellValueFactory(new PropertyValueFactory<>("bemerkung"));
 
+        loadComboBoxData();
         loadUnwetter();
-        handleReload();
 
-        // Слушатели на изменения поиска/фильтра/сортировки
         searchField.textProperty().addListener((obs, oldVal, newVal) -> updateFilteredList());
         filterComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateFilteredList());
         sortComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateFilteredList());
     }
 
+    private void loadComboBoxData() {
+        unwetterartComboBox.getItems().setAll(new UnwetterartDAO().getAllUnwetterarten());
+        ortComboBox.getItems().setAll(new OrtDAO().getAllOrte());
+    }
 
     private void loadUnwetter() {
         alleUnwetter = new UnwetterDAO().getAllUnwetter();
@@ -91,65 +88,82 @@ public class UnwetterController {
         String sortOrder = sortComboBox.getValue();
 
         List<Unwetter> gefiltert = alleUnwetter.stream()
-                // Поиск по всем полям (art, ort, datum, bemerkung)
                 .filter(u -> u.getUnwetterart().toLowerCase().contains(searchText) ||
                         u.getOrt().toLowerCase().contains(searchText) ||
                         u.getDatum().toString().toLowerCase().contains(searchText) ||
                         (u.getBemerkung() != null && u.getBemerkung().toLowerCase().contains(searchText)))
-                // Фильтрация по Art
                 .filter(u -> filterArt.equals("Alle") || u.getUnwetterart().equalsIgnoreCase(filterArt))
                 .collect(Collectors.toList());
 
-        // Сортировка
         if (sortOrder != null) {
             switch (sortOrder) {
-                case "Datum (Neueste)":
-                    gefiltert.sort(Comparator.comparing(Unwetter::getDatum).reversed());
-                    break;
-                case "Datum (Älteste)":
-                    gefiltert.sort(Comparator.comparing(Unwetter::getDatum));
-                    break;
-                case "Schadenhöhe (↑)":
-                    gefiltert.sort(Comparator.comparing(u -> u.getSchadenhoehe().doubleValue()));
-                    break;
-                case "Schadenhöhe (↓)":
-                    gefiltert.sort(Comparator.comparing((Unwetter u) -> u.getSchadenhoehe().doubleValue()).reversed());
-                    break;
+                case "Datum (Neueste)" -> gefiltert.sort(Comparator.comparing(Unwetter::getDatum).reversed());
+                case "Datum (Älteste)" -> gefiltert.sort(Comparator.comparing(Unwetter::getDatum));
+                case "Schadenhöhe (↑)" -> gefiltert.sort(Comparator.comparing(u -> u.getSchadenhoehe().doubleValue()));
+                case "Schadenhöhe (↓)" -> gefiltert.sort(Comparator.comparing((Unwetter u) -> u.getSchadenhoehe().doubleValue()).reversed());
             }
         }
 
         unwetterTable.getItems().setAll(gefiltert);
     }
 
-
     @FXML
-    private void handleAddUnwetter() {
+    private void handleAddOrUpdateUnwetter() {
         try {
-            String art = artField.getText();
+            Unwetterart selectedArt = unwetterartComboBox.getValue();
+            Ort selectedOrt = ortComboBox.getValue();
             LocalDate datum = datumPicker.getValue();
-            String ort = ortField.getText();
-            BigDecimal schaden = new BigDecimal(schadenField.getText());
+            String schadenText = schadenField.getText() != null ? schadenField.getText().trim() : "";
             String bemerkung = bemerkungField.getText();
 
-            Unwetter neu = new Unwetter(art, datum, ort, schaden, bemerkung);
-            UnwetterDAO dao = new UnwetterDAO();
-            dao.insertUnwetter(neu);
+            if (selectedArt == null || selectedOrt == null || datum == null || schadenText.isEmpty()) {
+                System.out.println("Bitte alle Pflichtfelder ausfüllen.");
+                return;
+            }
+
+            BigDecimal schaden;
+            try {
+                schaden = new BigDecimal(schadenText);
+            } catch (NumberFormatException e) {
+                System.out.println("Ungültige Schadenhöhe: " + schadenText);
+                return;
+            }
+
+            Unwetter selected = unwetterTable.getSelectionModel().getSelectedItem();
+
+            if (selected != null) {
+                // UPDATE
+                selected.setUnwetterartId(selectedArt.getId());
+                selected.setUnwetterart(selectedArt.getBezeichnung());
+                selected.setOrtId(selectedOrt.getId());
+                selected.setOrt(selectedOrt.getName());
+                selected.setDatum(datum);
+                selected.setSchadenhoehe(schaden);
+                selected.setBemerkung(bemerkung);
+
+                new UnwetterDAO().updateUnwetter(selected);
+            }
+
 
             clearFields();
             loadUnwetter();
+
         } catch (Exception e) {
             e.printStackTrace();
-            // Можно добавить Alert
         }
     }
 
+
+
     private void clearFields() {
-        artField.clear();
+        unwetterartComboBox.getSelectionModel().clearSelection();
+        ortComboBox.getSelectionModel().clearSelection();
         datumPicker.setValue(null);
-        ortField.clear();
         schadenField.clear();
         bemerkungField.clear();
     }
+
+
 
     @FXML
     private void handleDeleteUnwetter() {
@@ -157,61 +171,22 @@ public class UnwetterController {
         if (selected != null) {
             new UnwetterDAO().deleteUnwetter(selected.getId());
             loadUnwetter();
-        } else {
-            System.out.println("Keine Zeile ausgewählt");
         }
     }
+
     @FXML
     private void handleReload() {
-        System.out.println("🔄 Reload clicked");
-
         Benutzer benutzer = Session.getAktuellerBenutzer();
-
         boolean darfBearbeiten = benutzer != null && (
                 benutzer.getRolle().equalsIgnoreCase("Admin") ||
                         benutzer.getRolle().equalsIgnoreCase("ReadWriter")
         );
 
-        // Обновляем доступность inputBox
-        if (inputBox != null) {
-            inputBox.setVisible(darfBearbeiten);
-            inputBox.setManaged(darfBearbeiten);
-        }
+        inputBox.setVisible(darfBearbeiten);
+        editButton.setVisible(darfBearbeiten);
+        deleteButton.setVisible(darfBearbeiten);
 
-        // Обновляем доступность кнопок удаления/редактирования (если есть)
-        if (deleteButton != null) {
-            deleteButton.setVisible(darfBearbeiten);
-            deleteButton.setManaged(darfBearbeiten);
-        }
-
-        if (editButton != null) {
-            editButton.setVisible(darfBearbeiten);
-            editButton.setManaged(darfBearbeiten);
-        }
-
-        // Перезагрузить таблицу данных
         loadUnwetter();
-    }
-
-
-
-
-    @FXML
-    private void handleEditUnwetter() {
-        Unwetter selected = unwetterTable.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            artField.setText(selected.getUnwetterart());
-            datumPicker.setValue(selected.getDatum());
-            ortField.setText(selected.getOrt());
-            schadenField.setText(selected.getSchadenhoehe().toString());
-            bemerkungField.setText(selected.getBemerkung());
-
-            // удаляем старую запись и потом добавляем новую
-            new UnwetterDAO().deleteUnwetter(selected.getId());
-            loadUnwetter();
-        } else {
-            System.out.println("Keine Zeile ausgewählt");
-        }
     }
 
     public void updatePermissions() {
@@ -229,6 +204,29 @@ public class UnwetterController {
 
         deleteButton.setVisible(darfBearbeiten);
         deleteButton.setManaged(darfBearbeiten);
+    }
+
+    @FXML
+    private void handleEditUnwetter() {
+        Unwetter selected = unwetterTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            // Установить выбранное в поля ввода
+            Unwetterart selectedArt = unwetterartComboBox.getItems().stream()
+                    .filter(art -> art.getBezeichnung().equals(selected.getUnwetterart()))
+                    .findFirst().orElse(null);
+
+            Ort selectedOrt = ortComboBox.getItems().stream()
+                    .filter(ort -> ort.getName().equals(selected.getOrt()))
+                    .findFirst().orElse(null);
+
+            unwetterartComboBox.getSelectionModel().select(selectedArt);
+            ortComboBox.getSelectionModel().select(selectedOrt);
+            datumPicker.setValue(selected.getDatum());
+            schadenField.setText(selected.getSchadenhoehe().toString());
+            bemerkungField.setText(selected.getBemerkung() != null ? selected.getBemerkung() : "");
+        } else {
+            System.out.println("Keine Zeile ausgewählt");
+        }
     }
 
 }
