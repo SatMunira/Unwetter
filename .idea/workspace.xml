@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbfe7337-3801-4beb-b513-686d4454ff73" name="Changes" comment="Feat: Added  Base">
+    <list default="true" id="bbfe7337-3801-4beb-b513-686d4454ff73" name="Changes" comment="Feat: Added Style">
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/init_unwetter.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/controller/UnwetterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/controller/UnwetterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/OrtDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/OrtDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/UnwetterDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/UnwetterDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/UnwetterartDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/dao/UnwetterartDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Ort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Ort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Unwetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Unwetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Unwetterart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/unwetter/model/Unwetterart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/unwetter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/unwetter/view/unwetter.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +25,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -44,40 +39,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Asus/OneDrive/Рабочий стол/whz 2025/unwetter/src/main/resources/com/example/unwetter/images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Asus/OneDrive/Рабочий стол/whz 2025/unwetter/docker&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver.localdb",
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver.localdb&quot;,
+      &quot;sqlserver&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Asus\OneDrive\Рабочий стол\whz 2025\unwetter\docker" />
+      <recent name="C:\Users\Asus\OneDrive\Рабочий стол\whz 2025\unwetter\sql" />
       <recent name="C:\Users\Asus\OneDrive\Рабочий стол\whz 2025\unwetter\src\main\resources\com\example\unwetter\images" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.unwetter" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.unwetter.Main" />
       <module name="unwetter" />
@@ -92,9 +89,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -109,7 +121,12 @@
       <workItem from="1746967536747" duration="3386000" />
       <workItem from="1746973095949" duration="962000" />
       <workItem from="1746974854435" duration="3970000" />
-      <workItem from="1746991396658" duration="27930000" />
+      <workItem from="1746991396658" duration="28643000" />
+      <workItem from="1747057002951" duration="10000" />
+      <workItem from="1747141946823" duration="150000" />
+      <workItem from="1747672818856" duration="7000" />
+      <workItem from="1748607026020" duration="2024000" />
+      <workItem from="1748609304125" duration="15000" />
     </task>
     <task id="LOCAL-00001" summary="Feat: Added  Base">
       <option name="closed" value="true" />
@@ -119,7 +136,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747021232447</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Feat: Added Style">
+      <option name="closed" value="true" />
+      <created>1747026799199</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747026799199</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,6 +152,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Feat: Added  Base" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Added  Base" />
+    <MESSAGE value="Feat: Added Style" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: Added Style" />
   </component>
 </project>
