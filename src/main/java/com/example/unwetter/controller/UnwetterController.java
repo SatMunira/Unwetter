@@ -183,8 +183,13 @@ public class UnwetterController {
         );
 
         inputBox.setVisible(darfBearbeiten);
+        inputBox.setManaged(darfBearbeiten);
+
         editButton.setVisible(darfBearbeiten);
+        editButton.setManaged(darfBearbeiten);
+
         deleteButton.setVisible(darfBearbeiten);
+        deleteButton.setManaged(darfBearbeiten);
 
         loadUnwetter();
     }
