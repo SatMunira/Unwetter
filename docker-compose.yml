@@ -10,4 +10,16 @@ services:
     ports:
       - "1433:1433"
     volumes:
-      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/init.sql:/init.sql
+
+  sqlcmd:
+    image: mcr.microsoft.com/mssql-tools
+    depends_on:
+      - sqlserver
+    entrypoint: >
+      /bin/bash -c "
+        sleep 20 && 
+        /opt/mssql-tools/bin/sqlcmd -S sqlserver -U SA -P 'Test123!' -i /init.sql
+      "
+    volumes:
+      - ./docker/init.sql:/init.sql
