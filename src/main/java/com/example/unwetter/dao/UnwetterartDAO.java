@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UnwetterartDAO {
-    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=UnwetterDB;encrypt=true;trustServerCertificate=true";
-    private static final String USER = "sa";
-    private static final String PASSWORD = "Test123!";
+    String URL = "jdbc:sqlserver://localhost:1433;"
+            + "databaseName=UnwetterDB;"
+            + "encrypt=true;"
+            + "trustServerCertificate=true;"
+            + "loginTimeout=10;";  // 10 секунд таймаут
+    String USER = "sa";
+    String PASSWORD = "YourStrong!Passw0rd";
 
     public List<Unwetterart> getAllUnwetterarten() {
         List<Unwetterart> list = new ArrayList<>();
